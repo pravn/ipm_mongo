@@ -1,0 +1,24 @@
+#!/usr/bin/ruby
+class print_things
+  attr_reader :maxmem
+  @maxmem=2 #GB
+  def print_memory_footprint(dumpfile)
+    file=File.new("data/#{dumpfile}/mem_footprint.txt","w")
+    
+    if(!File.directory?("data/#{dumpfile}"))
+      Dir.mkdir("data/#{dumpfile}")
+    end
+
+    h=Query_operations.mem_footprint("banner.wallclock"=>{"$gt"=>@wall_filter})
+    
+    h.each do 
+      |x|
+      file.print("%-15d%-15d%-15d\n",
+                 x["wallclock"], x["concurrency"], x["nodes"],
+                 x["gbytes"]
+    
+    
+    
+
+    
+    

@@ -1,0 +1,28 @@
+README
+------
+
+This contains scripts to create a database for user data from NERSC runs. The content is irrelevant for the present. 
+
+We use mongodb to store the data. The scripts are written in ruby, which will interact with mongo using the 'mongo' module. Information on installing the module may be found here (https://github.com/mongodb/mongo-ruby-driver/wiki/Tutorial). If using mac, it is recommended to use macports. 
+
+We also need to have ruby1.9 installed (which is what we will use).
+
+The following are instructions to parse the database.
+
+First, start the mongodb server by issuing:
+
+mongod --dbpath <path/to/db>
+
+After starting the server, we will ask our scripts to parse some userdata. This is located in dump-aug-nox. 
+
+Issue the command:
+
+ruby1.9 main.rb aug-nox (the scripts will read files from dump-aug-nox).
+
+We will now attempt to query the database. The query and retrieval scripts are placed in ./lib/query.
+
+Issue the command (you need to know the database that was parsed).
+
+ruby1.9 mongo_retrieve.rb aug-nox.
+
+Some output will be printed in data/<name-of-database> which should be read and plotted by matplotlib python scripts.

@@ -1,0 +1,20 @@
+#!/usr/bin/ruby
+class Print_things
+  def self.print_concurrency_comm(file_name)
+    file=File.new("data/#{file_name}","w")
+    h=Query_operations.return_concurrency_comm("banner.wallclock"=>{"$gt"=>@wall_filter})  
+    h.each do 
+      |x|
+      x.each do 
+        |key, value|
+        tasks=key
+        comm=value
+
+        #          puts tasks.inspect, "\t", comm.inspect
+        file.print tasks, "\t\t", comm, "\n"
+
+      end
+    end
+    file.close
+  end
+end

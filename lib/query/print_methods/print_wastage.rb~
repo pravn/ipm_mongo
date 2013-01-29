@@ -1,0 +1,7 @@
+#!/usr/bin/ruby
+class Print_things
+  def self.print_wastage(file_name)
+    file=File.new("data/#{file_name}", "w")
+    h=Query_operations.return_wastage("wallclock")
+    
+  
